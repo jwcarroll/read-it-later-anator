@@ -57,24 +57,26 @@ export class QueueStack extends cdk.Stack {
       },
     });
 
-    // CloudWatch Alarms for DLQ monitoring
-    const articleDlqAlarm = this.articleProcessingDLQ.metricApproximateNumberOfMessagesVisible()
-      .createAlarm(this, 'ArticleDLQAlarm', {
-        alarmName: `read-it-later-article-dlq-alarm-${environment}`,
-        alarmDescription: 'Alert when messages appear in article processing DLQ',
-        threshold: 1,
-        evaluationPeriods: 1,
-        treatMissingData: cdk.aws_cloudwatch.TreatMissingData.NOT_BREACHING,
-      });
+    // CloudWatch Alarms for DLQ monitoring (only in production to save costs)
+    if (environment === 'prod') {
+      const articleDlqAlarm = this.articleProcessingDLQ.metricApproximateNumberOfMessagesVisible()
+        .createAlarm(this, 'ArticleDLQAlarm', {
+          alarmName: `read-it-later-article-dlq-alarm-${environment}`,
+          alarmDescription: 'Alert when messages appear in article processing DLQ',
+          threshold: 1,
+          evaluationPeriods: 1,
+          treatMissingData: cdk.aws_cloudwatch.TreatMissingData.NOT_BREACHING,
+        });
 
-    const digestDlqAlarm = this.digestGenerationDLQ.metricApproximateNumberOfMessagesVisible()
-      .createAlarm(this, 'DigestDLQAlarm', {
-        alarmName: `read-it-later-digest-dlq-alarm-${environment}`,
-        alarmDescription: 'Alert when messages appear in digest generation DLQ',
-        threshold: 1,
-        evaluationPeriods: 1,
-        treatMissingData: cdk.aws_cloudwatch.TreatMissingData.NOT_BREACHING,
-      });
+      const digestDlqAlarm = this.digestGenerationDLQ.metricApproximateNumberOfMessagesVisible()
+        .createAlarm(this, 'DigestDLQAlarm', {
+          alarmName: `read-it-later-digest-dlq-alarm-${environment}`,
+          alarmDescription: 'Alert when messages appear in digest generation DLQ',
+          threshold: 1,
+          evaluationPeriods: 1,
+          treatMissingData: cdk.aws_cloudwatch.TreatMissingData.NOT_BREACHING,
+        });
+    }
 
     // Outputs
     new cdk.CfnOutput(this, 'ArticleProcessingQueueUrl', {

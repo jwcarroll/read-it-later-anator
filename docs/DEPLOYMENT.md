@@ -278,12 +278,16 @@ cdk deploy --all -c environment=prod
 
 ### Development Environment
 
-**Estimated Monthly Cost: ~$5-10**
+**Estimated Monthly Cost: ~$0** ✨
 
-- DynamoDB: $0-5 (pay-per-request, depends on usage)
-- S3: $0-2 (depends on storage and requests)
-- SQS: $0-1 (1M requests free tier)
-- CloudWatch: $0-2 (basic monitoring)
+With AWS free tiers and serverless architecture, dev costs should be **essentially $0**:
+
+- **DynamoDB**: $0 (25 GB storage + 25 WCU/RCU perpetual free tier)
+- **S3**: $0 for first 12 months (5 GB + 20K GET + 2K PUT), then ~$0.10-0.50/month
+- **SQS**: $0 (1M requests/month perpetual free tier)
+- **CloudWatch**: $0 (alarms disabled in dev, basic metrics free)
+
+You'd need to save thousands of articles or have heavy traffic to exceed free tier limits.
 
 ### Production Environment
 
