@@ -52,14 +52,15 @@ Read-It-Later-Anator is more than just a bookmark manager. It's an AI-powered re
 
 ### Infrastructure
 - **Cloud**: AWS
-- **IaC**: Terraform/AWS CDK (planned)
-- **CI/CD**: GitHub Actions
+- **IaC**: AWS CDK v2
+- **CI/CD**: GitHub Actions (Continuous Deployment)
 
 ## Documentation
 
 - [Architecture](docs/ARCHITECTURE.md) - System design and component overview
 - [Setup Guide](docs/SETUP_GUIDE.md) - Development environment setup
 - [DynamoDB Queries](docs/DYNAMODB_QUERIES.md) - Database query examples
+- [Deployment](docs/DEPLOYMENT.md) - Infrastructure deployment guide
 
 ## Getting Started
 
@@ -126,6 +127,7 @@ read-it-later-anator/
 
 ### Phase 1: Core Features (Current)
 - [x] Architecture design
+- [x] Infrastructure setup (CDK + GitHub Actions)
 - [ ] User authentication
 - [ ] Article saving and storage
 - [ ] Content extraction
@@ -180,6 +182,37 @@ GET /api/articles/:id
 // Get personalized recommendations
 GET /api/recommendations
 ```
+
+## Deployment
+
+The infrastructure is automatically deployed via GitHub Actions. Simply push your changes and the CI/CD pipeline handles the rest.
+
+### Quick Deploy
+
+1. **Configure AWS credentials in GitHub Secrets** (one-time setup)
+   - `AWS_ACCESS_KEY_ID`
+   - `AWS_SECRET_ACCESS_KEY`
+   - `AWS_REGION`
+   - `AWS_ACCOUNT_ID`
+
+2. **Push infrastructure changes**
+   ```bash
+   git add infrastructure/
+   git commit -m "Update infrastructure"
+   git push origin main  # Auto-deploys to dev
+   ```
+
+3. **Access deployed resources**
+   - View stack outputs in AWS Console → CloudFormation
+   - Resources are tagged with environment and project
+
+### Environments
+
+- **dev**: Auto-deploys on push to `main` or `claude/**` branches
+- **staging**: Manual deploy via GitHub Actions
+- **prod**: Manual deploy with approval (commit with `[deploy-prod]`)
+
+See the [Deployment Guide](docs/DEPLOYMENT.md) for detailed instructions on AWS setup, secrets configuration, and manual deployments.
 
 ## Contributing
 
