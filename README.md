@@ -60,6 +60,9 @@ Read-It-Later-Anator is more than just a bookmark manager. It's an AI-powered re
 - [Architecture](docs/ARCHITECTURE.md) - System design and component overview
 - [Setup Guide](docs/SETUP_GUIDE.md) - Development environment setup
 - [DynamoDB Queries](docs/DYNAMODB_QUERIES.md) - Database query examples
+- [Agent Workflow Playbook](agent/PLAYBOOK.md) - Spec-first execution workflow for coding agents
+- [Agent Spec Template](agent/templates/SPEC_TEMPLATE.md) - Template for small, testable iterations
+- [Agent Current State](agent/state/CURRENT_STATE.md) - Cold-start resume snapshot
 
 ## Getting Started
 
