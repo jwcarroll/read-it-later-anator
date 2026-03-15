@@ -1,0 +1,14 @@
+{
+  "name": "read-it-later-anator",
+  "private": true,
+  "scripts": {
+    "web:build": "echo 'Static frontend artifact is served from ./frontend (no build step yet).'",
+    "web:start": "npx --yes serve frontend",
+    "ampx:sandbox": "npx ampx sandbox",
+    "ampx:deploy": "npx ampx deploy"
+  },
+  "devDependencies": {
+    "@aws-amplify/backend": "^1.6.0",
+    "typescript": "^5.8.2"
+  }
+}

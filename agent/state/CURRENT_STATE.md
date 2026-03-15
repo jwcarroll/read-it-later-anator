@@ -1,27 +1,23 @@
 # Current State
 
 ## Project Snapshot
-- **Current Phase**: Documentation refinement (MVP UX interactions)
-- **Last Completed Iteration**: UX journey contract documented for auth, link creation, feed states, and team sharing
+- **Current Phase**: Amplify Gen 2 infra bootstrap clarification
+- **Last Completed Iteration**: Clarified `amplify.yml` intent and hosting responsibility boundaries
 - **Active Branch**: work
 
 ## Latest Completed Work
-- Created `agent/specs/2026-03-15-ux-mvp-interactions.md` to define the SVI, acceptance criteria, assumptions, and validation plan.
-- Added `docs/UX_MVP_INTERACTIONS.md` covering four critical MVP user journeys with:
-  - Intended entry points in `frontend/index.html` and `frontend/app.js`
-  - Required API calls to auth, links, teams, and workspace-members endpoints
-  - Success/failure microcopy and interaction feedback behavior
-  - Manual browser acceptance checks
+- Created `agent/specs/2026-03-15-amplify-yml-clarification.md` to answer review feedback about `amplify.yml`.
+- Updated `README.md` to explicitly state that `amplify.yml` is expected for Amplify Hosting CI build/publish behavior.
+- Added purpose comments at the top of `amplify.yml` to make ownership and artifact source (`frontend/`) obvious.
+- Updated `amplify/frontend/hosting.md` with a direct Q&A confirming why `amplify.yml` is kept in source control.
 
 ## Next Recommended Iteration
-1. Scaffold `frontend/index.html` and `frontend/app.js` to match documented IDs/handler responsibilities.
-2. Implement auth + link creation happy path first (smallest executable subset).
-3. Validate journey states manually in browser and align API contracts.
+1. Run a real Amplify Hosting build in AWS to verify the CI spec end-to-end.
+2. Decide first backend migration target (auth or data) for Amplify Gen 2 resources.
 
 ## Open Risks / Blockers
-- `frontend/` implementation files referenced by the doc are not present yet.
-- API endpoints are documented as interaction contracts but not yet implemented.
-- Microcopy/interaction details may need refinement once real UI constraints exist.
+- This environment does not include configured Amplify app credentials for end-to-end cloud verification.
+- Frontend artifact remains static placeholder until actual app build pipeline is introduced.
 
 ## Resume Checklist
 - Read this file.
