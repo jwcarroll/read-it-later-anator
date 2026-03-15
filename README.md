@@ -64,6 +64,27 @@ Read-It-Later-Anator is more than just a bookmark manager. It's an AI-powered re
 - [Agent Spec Template](agent/templates/SPEC_TEMPLATE.md) - Template for small, testable iterations
 - [Agent Current State](agent/state/CURRENT_STATE.md) - Cold-start resume snapshot
 
+## Amplify Gen 2 Bootstrap (Infra-Only)
+
+This repository now includes an Amplify Gen 2 scaffold in `amplify/` for environment provisioning and hosting bootstrap.
+
+- **Backend scope right now**: infra-only metadata output (no auth/data/storage resources yet).
+- **Hosted app artifact source**: static files in `frontend/`.
+- **How hosting works**: `amplify.yml` runs the frontend build flow (`npm run web:build`) and publishes `frontend/` as the deploy artifact.
+
+**Do we need `amplify.yml`?** Yes—when using Amplify Hosting, this file is the build specification Amplify uses for CI build and artifact publishing.
+Without it, Amplify falls back to console defaults, which are less explicit and harder to review in source control.
+
+### Root workflows
+
+```bash
+# Local Amplify cloud sandbox
+npm run ampx:sandbox
+
+# Deploy backend changes to Amplify-managed environment
+npm run ampx:deploy
+```
+
 ## Getting Started
 
 ### Prerequisites
